@@ -1,5 +1,16 @@
 # Vim Vixen
 
+## Forked by Jonathan Hodgson
+
+### Done
+
+I have changed the colours of the command menu to fit more in line with my personal preference
+
+### ToDo
+
+Add some indication as to the mode that you are currently in
+
+## Original Readme
 [![Greenkeeper badge](https://badges.greenkeeper.io/ueokande/vim-vixen.svg)](https://greenkeeper.io/)
 [![Join the chat room on Gitter for vim-vixen/vim-vixen](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vim-vixen/vim-vixen)
 [![CircleCI](https://circleci.com/gh/ueokande/vim-vixen.svg?style=svg)](https://circleci.com/gh/ueokande/vim-vixen)
