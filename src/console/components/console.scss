@@ -155,9 +155,9 @@ body {
   }
 
   &-info {
-    background-color: red;
     font-weight: normal;
-    color: green;
+	background-color:  $gb-dm-dark-green;
+	color: $gb-dm-fg0;
   }
 
   &-command {
