@@ -9,4 +9,5 @@ export default {
   quit: 'Close the current tab',
   quitall: 'Close all tabs',
   help: 'Open Vim Vixen help in new tab',
+  proxy: 'Set a proxy'
 } as {[key: string]: string};

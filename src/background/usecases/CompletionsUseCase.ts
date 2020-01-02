@@ -217,4 +217,36 @@ export default class CompletionsUseCase {
         url: page.url
       }));
   }
+
+  async queryProxyItems(name: string, keywords: string) {
+    let proxies = [{
+        caption: "burp",
+        url: "127.0.0.1:8080"
+      },{
+        caption: "none",
+        url: "none"
+      } ].filter(proxy=>{
+        if( keywords == '' ){ return true; }
+        if( proxy.caption.startsWith(keywords) ){ return true; }
+        if( proxy.url.startsWith(keywords) ){ return true; }
+        return false;
+      });
+      return proxies;
+      return proxies.map(proxy => ({
+        caption: proxy.caption,
+        content: name + ' ' + proxy.url,
+        url: proxy.url
+      }));
+  }
+
+  async queryProxy(name: string, keywords: string): Promise<CompletionGroup[]> {
+    let groups: CompletionGroup[] = [];
+    let items = await this.queryProxyItems( name, keywords );
+    groups.push({
+      name: 'Saved Proxies',
+      items: items
+    });
+
+    return groups;
+  }
 }

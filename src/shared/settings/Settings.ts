@@ -9,6 +9,7 @@ import validate from './validate';
 export type SettingsJSON = {
   keymaps?: KeymapsJSON,
   search?: SearchJSON,
+  //proxies?: ProxiesJSON,
   properties?: PropertiesJSON,
   blacklist?: BlacklistJSON,
 };
@@ -161,6 +162,11 @@ export const DefaultSettingJSONText = `{
   "blacklist": [
   ]
 }`;
+
+  //"proxies": {
+  //  "burp": "127.0.0.1:8080",
+  //  "none": "none"
+  //},
 
 export const DefaultSetting: Settings =
   Settings.fromJSON(JSON.parse(DefaultSettingJSONText));

@@ -47,6 +47,8 @@ export default class CommandController {
       return this.completionsUseCase.queryBdeleteForce(name, keywords);
     case 'set':
       return this.completionsUseCase.querySet(name, keywords);
+    case 'proxy':
+      return this.completionsUseCase.queryProxy(name, keywords);
     }
     return Promise.resolve([]);
   }
@@ -99,6 +101,8 @@ export default class CommandController {
     case 'h':
     case 'help':
       return this.commandIndicator.help();
+    case 'proxy':
+      return this.commandIndicator.proxy(keywords);
     }
     throw new Error(words[0] + ' command is not defined');
   }

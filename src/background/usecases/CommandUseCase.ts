@@ -10,6 +10,7 @@ import BookmarkRepository from '../repositories/BookmarkRepository';
 import ConsoleClient from '../infrastructures/ConsoleClient';
 import ContentMessageClient from '../infrastructures/ContentMessageClient';
 import RepeatUseCase from '../usecases/RepeatUseCase';
+import { ProxyRepository } from '../repositories/BrowserSettingRepository';
 
 @injectable()
 export default class CommandIndicator {
@@ -22,6 +23,7 @@ export default class CommandIndicator {
     private consoleClient: ConsoleClient,
     private contentMessageClient: ContentMessageClient,
     private repeatUseCase: RepeatUseCase,
+    private proxyRepository: ProxyRepository,
   ) {
   }
 
@@ -140,6 +142,13 @@ export default class CommandIndicator {
 
   help(): Promise<void> {
     return this.helpPresenter.open();
+  }
+
+  async proxy(keywords: string): Promise<any> {
+    if (keywords.length === 0) {
+      return this.proxyRepository.set('none');
+    }
+    return this.proxyRepository.set(keywords);
   }
 
   private async urlOrSearch(keywords: string): Promise<any> {

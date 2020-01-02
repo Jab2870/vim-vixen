@@ -17,6 +17,17 @@ declare namespace browser.browserSettings.homepageOverride {
   function get(param: object): Promise<BrowserSettings>;
 }
 
+declare namespace browser.proxy.settings {
+
+  type BrowserSettings = {
+    value: string;
+  };
+
+  function get(param: object): Promise<BrowserSettings>;
+  function set(param: object): Promise<any>;
+  function clear(param: object): Promise<any>;
+}
+
 @injectable()
 export default class BrowserSettingRepository {
   async getHomepageUrls(): Promise<string[]> {
@@ -24,3 +35,25 @@ export default class BrowserSettingRepository {
     return value.split('|').map(urls.normalizeUrl);
   }
 }
+
+export class ProxyRepository {
+  private clearProxySettings(): Promise<any>{
+    return browser.proxy.settings.clear({});
+  }
+
+  private setProxySettings(address: string): Promise<any>{
+    return browser.proxy.settings.set({value: {
+      proxyType: "manual",
+      http: address,
+      httpProxyAll: true
+    }});
+  }
+
+  set(address: string): Promise<any> {
+    if( address.toLowerCase() == 'none' ){
+      return this.clearProxySettings();
+    }
+    return this.setProxySettings(address);
+  }
+}
+
